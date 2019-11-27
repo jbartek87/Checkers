@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-27T19:19:16" hostname="DESKTOP-0LFKVD0" time="0.009">
+  <properties/>
+  <testcase name="testBoard" classname="com.kodilla.logic.BoardTestSuite" time="0.009"/>
+  <system-out><![CDATA[|-----------------------|
+|  |  |  |  |  |  |  |  |
+|  |wP|  |  |  |  |  |  |
+|  |  |bP|  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|  |  |  |  |  |  |  |  |
+|-----------------------|
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
