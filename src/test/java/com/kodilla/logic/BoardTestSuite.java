@@ -9,9 +9,8 @@ public class BoardTestSuite {
         Board board = new Board();
         board.iniBoard(board);
         try {
-            board.move(1, 6, 0, 5);
-            board.move(0, 5, 1, 4);
-            board.move(1, 4, 2, 4);
+            board.move(3, 6, 4, 5);
+            board.move(6, 3, 5, 4);
 
         }catch (ArrayIndexOutOfBoundsException e){
             System.out.println("You have reached the end of board");

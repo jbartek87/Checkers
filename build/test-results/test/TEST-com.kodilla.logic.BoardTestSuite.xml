@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-28T19:29:28" hostname="DESKTOP-0LFKVD0" time="0.011">
+<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-11-28T19:34:03" hostname="DESKTOP-0LFKVD0" time="0.011">
   <properties/>
   <testcase name="testBoard" classname="com.kodilla.logic.BoardTestSuite" time="0.011"/>
-  <system-out><![CDATA[This move is not proper !
-|-----------------------------|
+  <system-out><![CDATA[|-----------------------------|
 |  |wP|  |wP|  |wP|  |wP|  |wP|
 |wP|  |wP|  |wP|  |wP|  |wP|  |
 |  |wP|  |wP|  |wP|  |wP|  |wP|
-|wP|  |wP|  |wP|  |wP|  |wP|  |
-|  |bP|  |  |  |  |  |  |  |  |
-|  |  |  |  |  |  |  |  |  |  |
-|  |  |  |bP|  |bP|  |bP|  |bP|
+|wP|  |wP|  |wP|  |  |  |wP|  |
+|  |  |  |  |  |wP|  |  |  |  |
+|  |  |  |  |bP|  |  |  |  |  |
+|  |bP|  |  |  |bP|  |bP|  |bP|
 |bP|  |bP|  |bP|  |bP|  |bP|  |
 |  |bP|  |bP|  |bP|  |bP|  |bP|
 |bP|  |bP|  |bP|  |bP|  |bP|  |
