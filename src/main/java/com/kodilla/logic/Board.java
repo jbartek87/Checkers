@@ -81,7 +81,7 @@ public class Board {
         }  else if (figure.getColor() == FigureColor.BLACK && figure instanceof Pawn && row2 > row1) {
             System.out.println("You can't go BACK !");
         } else if (figure.getColor() == FigureColor.BLACK && figure instanceof Pawn && col2 == col1 || col1 - 2 >= col2 || row1 - 2 > row2) {
-            System.out.println("This move is not proper !");
+            System.out.println("This move is not properr !");
         } else {
             setFigure(col1, row1, new None());
             setFigure(col2, row2, figure);
