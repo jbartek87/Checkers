@@ -21,49 +21,49 @@ public class Board {
         rows.get(row).getCols().remove(col + 1);
     }
 
-    public void iniBoard(Board board) {
+    public void initBoard() {
 
-        board.setFigure(1, 0, new Pawn(FigureColor.WHITE));
-        board.setFigure(3, 0, new Pawn(FigureColor.WHITE));
-        board.setFigure(5, 0, new Pawn(FigureColor.WHITE));
-        board.setFigure(7, 0, new Pawn(FigureColor.WHITE));
-        board.setFigure(9, 0, new Pawn(FigureColor.WHITE));
-        board.setFigure(0, 1, new Pawn(FigureColor.WHITE));
-        board.setFigure(2, 1, new Pawn(FigureColor.WHITE));
-        board.setFigure(4, 1, new Pawn(FigureColor.WHITE));
-        board.setFigure(6, 1, new Pawn(FigureColor.WHITE));
-        board.setFigure(8, 1, new Pawn(FigureColor.WHITE));
-        board.setFigure(1, 2, new Pawn(FigureColor.WHITE));
-        board.setFigure(3, 2, new Pawn(FigureColor.WHITE));
-        board.setFigure(5, 2, new Pawn(FigureColor.WHITE));
-        board.setFigure(7, 2, new Pawn(FigureColor.WHITE));
-        board.setFigure(9, 2, new Pawn(FigureColor.WHITE));
-        board.setFigure(0, 3, new Pawn(FigureColor.WHITE));
-        board.setFigure(2, 3, new Pawn(FigureColor.WHITE));
-        board.setFigure(4, 3, new Pawn(FigureColor.WHITE));
-        board.setFigure(6, 3, new Pawn(FigureColor.WHITE));
-        board.setFigure(8, 3, new Pawn(FigureColor.WHITE));
+        setFigure(1, 0, new Pawn(FigureColor.WHITE));
+        setFigure(3, 0, new Pawn(FigureColor.WHITE));
+        setFigure(5, 0, new Pawn(FigureColor.WHITE));
+        setFigure(7, 0, new Pawn(FigureColor.WHITE));
+        setFigure(9, 0, new Pawn(FigureColor.WHITE));
+        setFigure(0, 1, new Pawn(FigureColor.WHITE));
+        setFigure(2, 1, new Pawn(FigureColor.WHITE));
+        setFigure(4, 1, new Pawn(FigureColor.WHITE));
+        setFigure(6, 1, new Pawn(FigureColor.WHITE));
+        setFigure(8, 1, new Pawn(FigureColor.WHITE));
+        setFigure(1, 2, new Pawn(FigureColor.WHITE));
+        setFigure(3, 2, new Pawn(FigureColor.WHITE));
+        setFigure(5, 2, new Pawn(FigureColor.WHITE));
+        setFigure(7, 2, new Pawn(FigureColor.WHITE));
+        setFigure(9, 2, new Pawn(FigureColor.WHITE));
+        setFigure(0, 3, new Pawn(FigureColor.WHITE));
+        setFigure(2, 3, new Pawn(FigureColor.WHITE));
+        setFigure(4, 3, new Pawn(FigureColor.WHITE));
+        setFigure(6, 3, new Pawn(FigureColor.WHITE));
+        setFigure(8, 3, new Pawn(FigureColor.WHITE));
 
-        board.setFigure(1, 6, new Pawn(FigureColor.BLACK));
-        board.setFigure(3, 6, new Pawn(FigureColor.BLACK));
-        board.setFigure(5, 6, new Pawn(FigureColor.BLACK));
-        board.setFigure(7, 6, new Pawn(FigureColor.BLACK));
-        board.setFigure(9, 6, new Pawn(FigureColor.BLACK));
-        board.setFigure(0, 7, new Pawn(FigureColor.BLACK));
-        board.setFigure(2, 7, new Pawn(FigureColor.BLACK));
-        board.setFigure(4, 7, new Pawn(FigureColor.BLACK));
-        board.setFigure(6, 7, new Pawn(FigureColor.BLACK));
-        board.setFigure(8, 7, new Pawn(FigureColor.BLACK));
-        board.setFigure(1, 8, new Pawn(FigureColor.BLACK));
-        board.setFigure(3, 8, new Pawn(FigureColor.BLACK));
-        board.setFigure(5, 8, new Pawn(FigureColor.BLACK));
-        board.setFigure(7, 8, new Pawn(FigureColor.BLACK));
-        board.setFigure(9, 8, new Pawn(FigureColor.BLACK));
-        board.setFigure(0, 9, new Pawn(FigureColor.BLACK));
-        board.setFigure(2, 9, new Pawn(FigureColor.BLACK));
-        board.setFigure(4, 9, new Pawn(FigureColor.BLACK));
-        board.setFigure(6, 9, new Pawn(FigureColor.BLACK));
-        board.setFigure(8, 9, new Pawn(FigureColor.BLACK));
+        setFigure(1, 6, new Pawn(FigureColor.BLACK));
+        setFigure(3, 6, new Pawn(FigureColor.BLACK));
+        setFigure(5, 6, new Pawn(FigureColor.BLACK));
+        setFigure(7, 6, new Pawn(FigureColor.BLACK));
+        setFigure(9, 6, new Pawn(FigureColor.BLACK));
+        setFigure(0, 7, new Pawn(FigureColor.BLACK));
+        setFigure(2, 7, new Pawn(FigureColor.BLACK));
+        setFigure(4, 7, new Pawn(FigureColor.BLACK));
+        setFigure(6, 7, new Pawn(FigureColor.BLACK));
+        setFigure(8, 7, new Pawn(FigureColor.BLACK));
+        setFigure(1, 8, new Pawn(FigureColor.BLACK));
+        setFigure(3, 8, new Pawn(FigureColor.BLACK));
+        setFigure(5, 8, new Pawn(FigureColor.BLACK));
+        setFigure(7, 8, new Pawn(FigureColor.BLACK));
+        setFigure(9, 8, new Pawn(FigureColor.BLACK));
+        setFigure(0, 9, new Pawn(FigureColor.BLACK));
+        setFigure(2, 9, new Pawn(FigureColor.BLACK));
+        setFigure(4, 9, new Pawn(FigureColor.BLACK));
+        setFigure(6, 9, new Pawn(FigureColor.BLACK));
+        setFigure(8, 9, new Pawn(FigureColor.BLACK));
 
     }
 
@@ -112,5 +112,5 @@ public class Board {
         s += "|-----------------------------|\n";
         return s;
     }
+
 }
-;

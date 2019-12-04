@@ -7,7 +7,7 @@ public class BoardTestSuite {
     public void testBoard()throws ArrayIndexOutOfBoundsException {
 
         Board board = new Board();
-        board.iniBoard(board);
+        board.initBoard(board);
         try {
             board.move(3, 6, 4, 5);
             board.move(6, 3, 5, 4);

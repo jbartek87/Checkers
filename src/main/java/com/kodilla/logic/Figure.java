@@ -1,6 +1,8 @@
 package com.kodilla.logic;
 
-public class Figure {
+import javafx.scene.image.Image;
+
+public abstract class Figure {
     private FigureColor color;
 
     public Figure(FigureColor color) {
@@ -10,4 +12,6 @@ public class Figure {
     public FigureColor getColor() {
         return color;
     }
+
+    public abstract Image getImage();
 }
