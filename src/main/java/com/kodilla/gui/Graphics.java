@@ -3,7 +3,6 @@ package com.kodilla.gui;
 import com.kodilla.Game;
 import com.kodilla.logic.Board;
 import javafx.application.Application;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -14,11 +13,9 @@ import javafx.stage.Stage;
 
 
 public class Graphics extends Application {
-    private Image imageback = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\board.png");
+    private Image imageback = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\board2.jpg");
     Image imageWhite = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
     Image imageBlack = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
-    private FlowPane images = new FlowPane(Orientation.HORIZONTAL);
-
 
     public static void main(String[] args) {
         launch(args);
@@ -41,24 +38,6 @@ public class Graphics extends Application {
         grid.setBackground(background);
         grid.setAlignment(Pos.TOP_CENTER);
 
-//        ImageView img = new ImageView(imageWhite);
-//        ImageView img2 = new ImageView(image);
-//        ImageView img3 = new ImageView(image);
-//        ImageView img4 = new ImageView(image);
-//        ImageView img5 = new ImageView(image);
-//        ImageView img6 = new ImageView(image);
-//        ImageView img7 = new ImageView(image);
-//        ImageView img8 = new ImageView(image);
-//        ImageView img9 = new ImageView(image);
-//        ImageView img10 = new ImageView(image);
-//        ImageView img11 = new ImageView(image);
-//        ImageView img12 = new ImageView(image);
-
-
-//        grid.add(img, 5,5);
-//        grid.add(img2, 2,2,1,1);
-//        grid.add(img3, 3,3,1,1);
-//        grid.add(img4, 4,4,1,1);
 
 
         Scene scene = new Scene(grid, 640, 640, Color.CADETBLUE);
