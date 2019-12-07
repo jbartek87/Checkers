@@ -53,29 +53,98 @@ public class Board {
 
     }
 
-    public void move(int col1, int row1, int col2, int row2) {
+    private void doSimpleMove(int col1, int row1, int col2, int row2) {
+        Figure figure = getFigure(col1, row1);
+        setFigure(col1, row1, new None());
+        setFigure(col2, row2, figure);
+    }
+
+    private void doHitMove(int col1, int row1, int col2, int row2) {
         Figure figure = getFigure(col1, row1);
         Figure moveFigure = getFigure(col2, row2);
-        if (figure instanceof None) {
-            System.out.println("This field is empty");
-        } else if (moveFigure instanceof Pawn || moveFigure instanceof Queen) {
-            System.out.println("You cannot make this move");
-        } else if (figure.getColor() == FigureColor.WHITE && figure instanceof Pawn && row2 < row1) {
-            System.out.println("You can't go BACK !");
-        } else if (figure.getColor() == FigureColor.WHITE && figure instanceof Pawn && col2 == col1 || row1==row2 || col1 + 2 <= col2 || row1 + 2 < row2) {
-            System.out.println("This move is not proper !");
-        }  else if (figure.getColor() == FigureColor.BLACK && figure instanceof Pawn && row2 > row1) {
-            System.out.println("You can't go BACK !");
-        } else if (figure.getColor() == FigureColor.BLACK && figure instanceof Pawn && col2 == col1 || col1 - 2 >= col2 || row1 - 2 > row2) {
-            System.out.println("This move is not properr !");
-        } else {
-            setFigure(col1, row1, new None());
-            setFigure(col2, row2, figure);
+        setFigure(col1, row1, new None());
+        if (figure.getColor() == FigureColor.WHITE && col2 > col1 && row2 > row1) {
+            setFigure(col2 + 1, row2 + 1, figure);
+            setFigure(col2, row2, new None());
+        } else if (figure.getColor() == FigureColor.WHITE && col1 > col2 && row2 > row1) {
+            setFigure(col2 - 1, row2 + 1, figure);
+            setFigure(col2, row2, new None());
+
+        } else if (figure.getColor() == FigureColor.WHITE && col1 > col2 && row1 > row2) {
+            setFigure(col2 - 1, row2 - 1, figure);
+            setFigure(col2, row2, new None());
+
+        } else if (figure.getColor() == FigureColor.WHITE && col2 > col1 && row1 > row2) {
+            setFigure(col2 + 1, row2 - 1, figure);
+            setFigure(col2, row2, new None());
+
+        } else if (figure.getColor() == FigureColor.BLACK && col2 < col1 && row1 > row2) {
+            setFigure(col2 - 1, row2 - 1, figure);
+            setFigure(col2, row2, new None());
+        } else if (figure.getColor() == FigureColor.BLACK && col2 > col1 && row1 > row2) {
+            setFigure(col2 + 1, row2 - 1, figure);
+            setFigure(col2, row2, new None());
+        } else if (figure.getColor() == FigureColor.BLACK && col2 > col1 && row2 > row1) {
+            setFigure(col2 + 1, row2 + 1, figure);
+            setFigure(col2, row2, new None());
+
+        } else if (figure.getColor() == FigureColor.BLACK && col1 > col2 && row2 > row1) {
+            setFigure(col2 - 1, row2 + 1, figure);
+            setFigure(col2, row2, new None());
+
         }
+
+    }
+
+    private boolean isSimpleMoveValid(int col1, int row1, int col2, int row2) {
+        Figure figure = getFigure(col1, row1);
+        Figure moveFigure = getFigure(col2, row2);
+        if (figure.getColor() == FigureColor.WHITE && col2 - col1 == 1 && row2 - row1 == 1 && moveFigure instanceof None
+                || figure.getColor() == FigureColor.WHITE && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof None
+                || figure.getColor() == FigureColor.BLACK && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof None
+                || figure.getColor() == FigureColor.BLACK && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof None) {
+            System.out.println("Simple move is true");
+            return true;
+        }
+        System.out.println("Simple move is false");
+        return false;
+    }
+
+    private boolean isHitMoveValid(int col1, int row1, int col2, int row2) {
+        Figure figure = getFigure(col1, row1);
+        Figure moveFigure = getFigure(col2, row2);
+        if (col2 + 1 == 8 || row2 + 1 == 8 || col2 - 1 == -1 || row2 - 1 == -1) {
+            System.out.println("Hit move is false");
+            return false;
+        } else if (
+                figure.getColor() == FigureColor.WHITE && col2 - col1 == 1 && row2 - row1 == 1 && moveFigure instanceof Pawn && getFigure(col2 + 1, row2 + 1) instanceof None
+                        || figure.getColor() == FigureColor.WHITE && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof Pawn && getFigure(col2 - 1, row2 + 1) instanceof None
+                        || figure.getColor() == FigureColor.WHITE && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof Pawn && getFigure(col2 - 1, row2 - 1) instanceof None
+                        || figure.getColor() == FigureColor.WHITE && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof Pawn && getFigure(col2 + 1, row2 - 1) instanceof None
+                        || figure.getColor() == FigureColor.BLACK && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof Pawn && getFigure(col2 - 1, row2 - 1) instanceof None
+                        || figure.getColor() == FigureColor.BLACK && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof Pawn && getFigure(col2 + 1, row2 - 1) instanceof None
+                        || figure.getColor() == FigureColor.BLACK && col2 - col1 == 1 && row2 - row1 == 1 && moveFigure instanceof Pawn && getFigure(col2 + 1, row2 + 1) instanceof None
+                        || figure.getColor() == FigureColor.BLACK && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof Pawn && getFigure(col2 - 1, row2 + 1) instanceof None) {
+
+            System.out.println("Hit move is true");
+            return true;
+        }
+        System.out.println("Hit move is false");
+        return false;
     }
 
 
-
+    public void move(int col1, int row1, int col2, int row2) throws IndexOutOfBoundsException {
+        try {
+            if (isSimpleMoveValid(col1, row1, col2, row2)) {
+                doSimpleMove(col1, row1, col2, row2);
+            } else if (isHitMoveValid(col1, row1, col2, row2)) {
+                doHitMove(col1, row1, col2, row2);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Invalid move");
+        }
+    }
 
 
     @Override
