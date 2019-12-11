@@ -6,6 +6,8 @@ import com.kodilla.logic.Pawn;
 import com.kodilla.logic.Queen;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Game {
     private Board board;
@@ -24,8 +26,20 @@ public class Game {
             for(int col=0;col<8;col++){
                 Figure figure = board.getFigure(col,row);
                 if(figure instanceof Pawn || figure instanceof Queen){
+                    if(col==oldX&&row==oldY){
+                        //wyśw pod figurą obiekt typu rectangle w kolorze dowolnym
+                        Rectangle rec = new Rectangle();
+                        rec.setWidth(80);
+                        rec.setHeight(80);
+                        rec.setFill(Color.web("#ed4b00"));
+                        GridPane.setColumnIndex(rec, col);
+                        GridPane.setRowIndex(rec,row);
+                        gridPane.getChildren().addAll(rec);
+
+                    }
                     ImageView img = new ImageView(figure.getImage());
                     gridPane.add(img,col,row);
+
                 }
             }
         }
@@ -38,7 +52,7 @@ public class Game {
         } else {
             board.move(oldX, oldY, x, y);
             oldX=-1;
-            showBoard();
         }
+        showBoard();
     }
 }
