@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-15T16:10:51" hostname="DESKTOP-0LFKVD0" time="0.01">
+  <properties/>
+  <testcase name="logicTest" classname="com.kodilla.logic.BoardTestSuite" time="0.01"/>
+  <system-out><![CDATA[0
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

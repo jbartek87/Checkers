@@ -3,9 +3,40 @@ package com.kodilla.ai;
 import com.kodilla.logic.Board;
 import com.kodilla.logic.FigureColor;
 
+import java.util.ArrayList;
+
 public class AiLogic {
-    public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount){
+    public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount) {
         // 1. Zbudować listę wszystkich mozliwych ruchów
+
+        ArrayList<Move> possibleMovesWhite = new ArrayList<>();
+        ArrayList<Move> possibleMovesBlack = new ArrayList<>();
+        int count = 0;
+
+        for (int col = 0; col < 8; col++) {
+            for (int row = 0; row < 8; row++) {
+                if (whoMoves == FigureColor.BLACK) {
+                    if (board.isSimpleMoveValid(col, row, col + 1, row + 1))
+                        possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
+                    count++;
+                    if (board.isSimpleMoveValid(col, row, col - 1, row + 1))
+                        possibleMovesBlack.add(new Move(col, row, col - 1, row + 1));
+                    count++;
+                }
+
+//                else if (whoMoves == FigureColor.WHITE) {
+//                    if (board.isSimpleMoveValid(col, row, col + 1, row - 1))
+//                        possibleMovesWhite.add(new Move(col, row, col + 1, row - 1));
+//                    count++;
+//                    if (board.isSimpleMoveValid(col, row, col - 1, row - 1))
+//                        possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
+//                    count++;
+//                }
+            }
+        }
+
+        System.out.println(count);
+
         //2. Dla każdego z tych możliwych ruchów obliczam punktacje planszy
         //3. Wybieram ruch najkorzystniejszy dla whoMoves
         //4. Robie kopie board(deep copy)
@@ -19,11 +50,13 @@ public class AiLogic {
         return null;
     }
 
-    private int calculateScore(Board board, FigureColor whoMoves){
+    private int calculateScore(Board board, FigureColor whoMoves) {
         // 1. sumuje dla każdej figury koloru whoMoves na planszy jej odległość od krawędzi bazowej
         // 2. jeżeli jest możliwe jakieś bicie to dodaje np. + 15 pkt
         // 3. od wyniku odejmujemy pkt przeciwnika policzone tak samo
 
         return 0;
     }
-}
+
+    }
+

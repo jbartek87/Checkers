@@ -1,5 +1,7 @@
 package com.kodilla.logic;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +10,28 @@ import static com.kodilla.logic.FigureColor.WHITE;
 
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
-    private FigureColor whichMove = WHITE;
+    private FigureColor whoMoves = WHITE;
+//    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
+//    private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
+    public static Image IMAGE_WHITE = null;
+    public static Image IMAGE_BLACK = null;
 
     public Board() {
         for (int n = 0; n < 10; n++) {
             rows.add(new BoardRow());
         }
     }
+
+
+
+    public static Image getImageWhite() {
+        return IMAGE_WHITE;
+    }
+
+    public static Image getImageBlack() {
+        return IMAGE_BLACK;
+    }
+
 
     public Figure getFigure(int col, int row) {
         return rows.get(row).getCols().get(col);
@@ -55,10 +72,11 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
         setFigure(7, 5, new Pawn(BLACK));
 
-        System.out.println("Color" + " " + whichMove + " " + "starts the game");
+//        System.out.println("Color" + " " + whichMove + " " + "starts the game");
     }
 
-    private void doSimpleMove(int col1, int row1, int col2, int row2) {
+    private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
+
         Figure figure = getFigure(col1, row1);
         setFigure(col1, row1, new None());
         setFigure(col2, row2, figure);
@@ -107,18 +125,22 @@ public class Board {
 //        setFigure(col,row, new None());
 //    }
 
-    private boolean isSimpleMoveValid(int col1, int row1, int col2, int row2) {
-        Figure figure = getFigure(col1, row1);
-        Figure moveFigure = getFigure(col2, row2);
-        if (figure.getColor() == WHITE && col2 - col1 == 1 && row2 - row1 == 1 && moveFigure instanceof None
-                || figure.getColor() == WHITE && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof None
-                || figure.getColor() == BLACK && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof None
-                || figure.getColor() == BLACK && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof None) {
-            System.out.println("Simple move is true");
-            return true;
+    public boolean isSimpleMoveValid(int col1, int row1, int col2, int row2) {
+        if(col2==-1||row2==-1||col2==8||row2==8){
+            return false;
+        } else {
+            Figure figure = getFigure(col1, row1);
+            Figure moveFigure = getFigure(col2, row2);
+            if (figure.getColor() == WHITE && col2 - col1 == 1 && row2 - row1 == 1 && moveFigure instanceof None
+                    || figure.getColor() == WHITE && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof None
+                    || figure.getColor() == BLACK && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof None
+                    || figure.getColor() == BLACK && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof None) {
+                System.out.println("Simple move is true");
+                return true;
+            }
+            System.out.println("Simple move is false");
+            return false;
         }
-        System.out.println("Simple move is false");
-        return false;
     }
 
     private boolean isHitMoveValid(int col1, int row1, int col2, int row2) {
@@ -149,12 +171,12 @@ public class Board {
     }
 
     private void setOppositeColor() {
-        whichMove = (whichMove == WHITE) ? BLACK : WHITE;
+        whoMoves = (whoMoves == WHITE) ? BLACK : WHITE;
     }
 
     public void move(int col1, int row1, int col2, int row2) {
 
-        if (getFigure(col1, row1).getColor() == whichMove) {
+        if (getFigure(col1, row1).getColor() == whoMoves) {
             if (isSimpleMoveValid(col1, row1, col2, row2)) {
                 doSimpleMove(col1, row1, col2, row2);
                 setOppositeColor();
@@ -162,7 +184,7 @@ public class Board {
                 doHitMove(col1, row1, col2, row2);
 
             }
-            System.out.println("Now it's color" + " " + whichMove + " " + "turn");
+            System.out.println("Now it's color" + " " + whoMoves + " " + "turn");
         }
     }
 
