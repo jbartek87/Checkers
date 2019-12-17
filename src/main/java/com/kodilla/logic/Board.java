@@ -10,7 +10,7 @@ import static com.kodilla.logic.FigureColor.WHITE;
 
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
-    private FigureColor whoMoves = WHITE;
+    private FigureColor whoMoves = BLACK;
 //    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
 //    private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
     public static Image IMAGE_WHITE = null;
@@ -72,7 +72,7 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
         setFigure(7, 5, new Pawn(BLACK));
 
-//        System.out.println("Color" + " " + whichMove + " " + "starts the game");
+        System.out.println("Color" + " " + whoMoves + " " + "starts the game");
     }
 
     private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
@@ -83,6 +83,7 @@ public class Board {
     }
 
     private void doHitMove(int col1, int row1, int col2, int row2) {
+
         Figure figure = getFigure(col1, row1);
         Figure moveFigure = getFigure(col2, row2);
         setFigure(col1, row1, new None());
@@ -143,27 +144,31 @@ public class Board {
         }
     }
 
-    private boolean isHitMoveValid(int col1, int row1, int col2, int row2) {
-        Figure figure = getFigure(col1, row1);
-        Figure moveFigure = getFigure(col2, row2);
-        if (col2 + 1 == 8 || row2 + 1 == 8 || col2 - 1 == -1 || row2 - 1 == -1) {
+    public boolean isHitMoveValid(int col1, int row1, int col2, int row2) {
+        if(col2==-1||row2==-1||col2==8||row2==8) {
+            return false;
+        }else {
+            Figure figure = getFigure(col1, row1);
+            Figure moveFigure = getFigure(col2, row2);
+            if (col2 + 1 == 8 || row2 + 1 == 8 || col2 - 1 == -1 || row2 - 1 == -1) {
+                System.out.println("Hit move is false");
+                return false;
+            } else if (
+                    isHitPossible(col1, row1, col2, row2, figure, moveFigure, WHITE, col2 + 1, row2 + 1)
+                            || isHitPossible(col2, row1, col1, row2, figure, moveFigure, WHITE, col2 - 1, row2 + 1)
+                            || isHitPossible(col2, row2, col1, row1, figure, moveFigure, WHITE, col2 - 1, row2 - 1)
+                            || isHitPossible(col1, row2, col2, row1, figure, moveFigure, WHITE, col2 + 1, row2 - 1)
+                            || isHitPossible(col2, row2, col1, row1, figure, moveFigure, BLACK, col2 - 1, row2 - 1)
+                            || isHitPossible(col1, row2, col2, row1, figure, moveFigure, BLACK, col2 + 1, row2 - 1)
+                            || isHitPossible(col1, row1, col2, row2, figure, moveFigure, BLACK, col2 + 1, row2 + 1)
+                            || isHitPossible(col2, row1, col1, row2, figure, moveFigure, BLACK, col2 - 1, row2 + 1)) {
+
+                System.out.println("Hit move is true");
+                return true;
+            }
             System.out.println("Hit move is false");
             return false;
-        } else if (
-                isHitPossible(col1, row1, col2, row2, figure, moveFigure, WHITE, col2 + 1, row2 + 1)
-                        || isHitPossible(col2, row1, col1, row2, figure, moveFigure, WHITE, col2 - 1, row2 + 1)
-                        || isHitPossible(col2, row2, col1, row1, figure, moveFigure, WHITE, col2 - 1, row2 - 1)
-                        || isHitPossible(col1, row2, col2, row1, figure, moveFigure, WHITE, col2 + 1, row2 - 1)
-                        || isHitPossible(col2, row2, col1, row1, figure, moveFigure, BLACK, col2 - 1, row2 - 1)
-                        || isHitPossible(col1, row2, col2, row1, figure, moveFigure, BLACK, col2 + 1, row2 - 1)
-                        || isHitPossible(col1, row1, col2, row2, figure, moveFigure, BLACK, col2 + 1, row2 + 1)
-                        || isHitPossible(col2, row1, col1, row2, figure, moveFigure, BLACK, col2 - 1, row2 + 1)) {
-
-            System.out.println("Hit move is true");
-            return true;
         }
-        System.out.println("Hit move is false");
-        return false;
     }
 
     private boolean isHitPossible(int col1, int row1, int col2, int row2, Figure figure, Figure enemyFigure, FigureColor white, int i, int i2) {
@@ -171,7 +176,7 @@ public class Board {
     }
 
     private void setOppositeColor() {
-        whoMoves = (whoMoves == WHITE) ? BLACK : WHITE;
+        whoMoves = (whoMoves == BLACK) ? BLACK : WHITE;
     }
 
     public void move(int col1, int row1, int col2, int row2) {

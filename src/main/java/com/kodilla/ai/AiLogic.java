@@ -2,42 +2,57 @@ package com.kodilla.ai;
 
 import com.kodilla.logic.Board;
 import com.kodilla.logic.FigureColor;
+import com.kodilla.logic.Pawn;
 
 import java.util.ArrayList;
 
 public class AiLogic {
+    ArrayList<Move> possibleMovesWhite = new ArrayList<>();
+    ArrayList<Move> possibleMovesBlack = new ArrayList<>();
     public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount) {
         // 1. Zbudować listę wszystkich mozliwych ruchów
 
-        ArrayList<Move> possibleMovesWhite = new ArrayList<>();
-        ArrayList<Move> possibleMovesBlack = new ArrayList<>();
-        int count = 0;
+        Move makeMove = new Move(0, 0, 0, 0);
 
         for (int col = 0; col < 8; col++) {
             for (int row = 0; row < 8; row++) {
-                if (whoMoves == FigureColor.BLACK) {
-                    if (board.isSimpleMoveValid(col, row, col + 1, row + 1))
+
+                // SPRAWDZANIE DLA CZARNYCH
+
+                if (board.isSimpleMoveValid(col, row, col + 1, row + 1)) {
                         possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
-                    count++;
-                    if (board.isSimpleMoveValid(col, row, col - 1, row + 1))
+                }
+                if (board.isSimpleMoveValid(col, row, col - 1, row + 1)) {
                         possibleMovesBlack.add(new Move(col, row, col - 1, row + 1));
-                    count++;
+                }
+                if (board.isHitMoveValid(col, row, col + 1, row + 1)) {
+                    possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
+                }
+                if (board.isHitMoveValid(col, row, col - 1, row + 1)) {
+                    possibleMovesBlack.add(new Move(col, row, col - 1, row + 1));
                 }
 
-//                else if (whoMoves == FigureColor.WHITE) {
-//                    if (board.isSimpleMoveValid(col, row, col + 1, row - 1))
-//                        possibleMovesWhite.add(new Move(col, row, col + 1, row - 1));
-//                    count++;
-//                    if (board.isSimpleMoveValid(col, row, col - 1, row - 1))
-//                        possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
-//                    count++;
-//                }
+                // SPRAWDZANIE DLA BIALYCH
+                if (board.isSimpleMoveValid(col, row, col + 1, row - 1)) {
+                    possibleMovesWhite.add(new Move(col, row, col + 1, row - 1));
+                }
+                if (board.isSimpleMoveValid(col, row, col - 1, row - 1)) {
+                    possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
+                }
+                if (board.isHitMoveValid(col, row, col + 1, row - 1)) {
+                    possibleMovesWhite.add(new Move(col, row, col + 1, row - 1));
+                }
+                if (board.isHitMoveValid(col, row, col - 1, row - 1)) {
+                    possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
+                }
             }
         }
-
-        System.out.println(count);
-
         //2. Dla każdego z tych możliwych ruchów obliczam punktacje planszy
+
+        System.out.println("Figura w kolumnie " + makeMove.getCol1() + " i rzedzie " + makeMove.getRow1()
+                + " Zostanie przesunieta na kolumne " + makeMove.getCol2() + " i rzad" + makeMove.getRow2());
+
+
         //3. Wybieram ruch najkorzystniejszy dla whoMoves
         //4. Robie kopie board(deep copy)
         //5. Wykonuje na skopiowanej planszy ruch wybrany w pkt.3
@@ -50,12 +65,36 @@ public class AiLogic {
         return null;
     }
 
-    private int calculateScore(Board board, FigureColor whoMoves) {
-        // 1. sumuje dla każdej figury koloru whoMoves na planszy jej odległość od krawędzi bazowej
+    // 1. sumuje dla każdej figury koloru whoMoves na planszy jej odległość od krawędzi bazowej
+    public int calculateScore(Board board, FigureColor whoMoves) {
+        int score = 0;
+        if (whoMoves == FigureColor.WHITE) {
+            for (int col = 0; col < 8; col++) {
+                for (int row = 0; row < 8; row++) {
+                    if (board.getFigure(col, row) instanceof Pawn && board.getFigure(col, row).getColor() == FigureColor.WHITE) {
+                        score = score + row;
+                    }
+                }
+            }
+            System.out.println(score);
+
+        }
+
+        if (whoMoves == FigureColor.BLACK) {
+            for (int col = 0; col < 8; col++) {
+                for (int row = 0; row < 8; row++) {
+                    if (board.getFigure(col, row) instanceof Pawn && board.getFigure(col, row).getColor() == FigureColor.BLACK) {
+                        score = score + row - 7;
+                    }
+                }
+            }
+            score = Math.abs(score);
+            System.out.println(score);
+
+        }
         // 2. jeżeli jest możliwe jakieś bicie to dodaje np. + 15 pkt
         // 3. od wyniku odejmujemy pkt przeciwnika policzone tak samo
-
-        return 0;
+        return score;
     }
 
     }
