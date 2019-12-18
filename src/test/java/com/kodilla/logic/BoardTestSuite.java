@@ -24,8 +24,11 @@ public class BoardTestSuite {
         Board board = new Board();
         AiLogic logic = new AiLogic();
         board.initBoard();
-        board.move(5,5,4, 4);
-        logic.calculateScore(board,FigureColor.BLACK);
+//        board.move(4,2,5, 3);
+//        board.move(5,5,6,4);
+//        board.move(0,2,1, 3);
+        logic.getBestMove(board,FigureColor.WHITE, 3);
+//        logic.calculateScore(board,FigureColor.BLACK);
 
     }
 }

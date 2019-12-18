@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class AiLogic {
     ArrayList<Move> possibleMovesWhite = new ArrayList<>();
     ArrayList<Move> possibleMovesBlack = new ArrayList<>();
+    ArrayList<Move> possibleHitMoves = new ArrayList<>();
     public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount) {
         // 1. Zbudować listę wszystkich mozliwych ruchów
 
@@ -20,17 +21,21 @@ public class AiLogic {
                 // SPRAWDZANIE DLA CZARNYCH
 
                 if (board.isSimpleMoveValid(col, row, col + 1, row + 1)) {
-                        possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
+                    possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
+//                    System.out.println("simple move added");
                 }
                 if (board.isSimpleMoveValid(col, row, col - 1, row + 1)) {
-                        possibleMovesBlack.add(new Move(col, row, col - 1, row + 1));
-                }
-                if (board.isHitMoveValid(col, row, col + 1, row + 1)) {
-                    possibleMovesBlack.add(new Move(col, row, col + 1, row + 1));
-                }
-                if (board.isHitMoveValid(col, row, col - 1, row + 1)) {
                     possibleMovesBlack.add(new Move(col, row, col - 1, row + 1));
+//                    System.out.println("simple move added");
+//                }
+//                if (board.isHitMoveValid(col, row, col + 1, row - 1)) {
+//                    possibleHitMoves.add(new Move(col, row, col + 1, row + 1));
+//                    System.out.println("hit move added");
                 }
+//                if (board.isHitMoveValid(col, row, col - 1, row - 1)) {
+//                    possibleHitMoves.add(new Move(col, row, col - 1, row + 1));
+////                    System.out.println("hit move added");
+//                }
 
                 // SPRAWDZANIE DLA BIALYCH
                 if (board.isSimpleMoveValid(col, row, col + 1, row - 1)) {
@@ -40,17 +45,19 @@ public class AiLogic {
                     possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
                 }
                 if (board.isHitMoveValid(col, row, col + 1, row - 1)) {
-                    possibleMovesWhite.add(new Move(col, row, col + 1, row - 1));
+                    possibleHitMoves.add(new Move(col, row, col + 1, row - 1));
+                    System.out.println("hit move added");
                 }
                 if (board.isHitMoveValid(col, row, col - 1, row - 1)) {
-                    possibleMovesWhite.add(new Move(col, row, col - 1, row - 1));
+                    possibleHitMoves.add(new Move(col, row, col - 1, row - 1));
+                    System.out.println("hit move added");
                 }
             }
         }
+        System.out.println(possibleHitMoves.size());
         //2. Dla każdego z tych możliwych ruchów obliczam punktacje planszy
 
-        System.out.println("Figura w kolumnie " + makeMove.getCol1() + " i rzedzie " + makeMove.getRow1()
-                + " Zostanie przesunieta na kolumne " + makeMove.getCol2() + " i rzad" + makeMove.getRow2());
+
 
 
         //3. Wybieram ruch najkorzystniejszy dla whoMoves
@@ -78,6 +85,7 @@ public class AiLogic {
             }
             System.out.println(score);
 
+
         }
 
         if (whoMoves == FigureColor.BLACK) {
@@ -89,11 +97,16 @@ public class AiLogic {
                 }
             }
             score = Math.abs(score);
-            System.out.println(score);
+            for(int i=0; i<possibleMovesBlack.size();i++){
+                if(board.isHitMoveValid(possibleMovesBlack.get(i).getCol1(),possibleMovesBlack.get(i).getRow1(),possibleMovesBlack.get(i).getCol2(),possibleMovesBlack.get(i).getRow2())){
+                    score = score + 15;
+                }
+            }
 
         }
         // 2. jeżeli jest możliwe jakieś bicie to dodaje np. + 15 pkt
         // 3. od wyniku odejmujemy pkt przeciwnika policzone tak samo
+        System.out.println(score);
         return score;
     }
 

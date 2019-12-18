@@ -10,7 +10,7 @@ import static com.kodilla.logic.FigureColor.WHITE;
 
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
-    private FigureColor whoMoves = BLACK;
+    private FigureColor whoMoves = WHITE;
 //    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
 //    private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
     public static Image IMAGE_WHITE = null;
@@ -136,10 +136,10 @@ public class Board {
                     || figure.getColor() == WHITE && col1 - col2 == 1 && row2 - row1 == 1 && moveFigure instanceof None
                     || figure.getColor() == BLACK && col2 - col1 == 1 && row1 - row2 == 1 && moveFigure instanceof None
                     || figure.getColor() == BLACK && col1 - col2 == 1 && row1 - row2 == 1 && moveFigure instanceof None) {
-                System.out.println("Simple move is true");
+//                System.out.println("Simple move is true");
                 return true;
             }
-            System.out.println("Simple move is false");
+//            System.out.println("Simple move is false");
             return false;
         }
     }
@@ -149,24 +149,24 @@ public class Board {
             return false;
         }else {
             Figure figure = getFigure(col1, row1);
-            Figure moveFigure = getFigure(col2, row2);
+            Figure enemyFigure = getFigure(col2, row2);
             if (col2 + 1 == 8 || row2 + 1 == 8 || col2 - 1 == -1 || row2 - 1 == -1) {
-                System.out.println("Hit move is false");
+//                System.out.println("Hit move is false");
                 return false;
             } else if (
-                    isHitPossible(col1, row1, col2, row2, figure, moveFigure, WHITE, col2 + 1, row2 + 1)
-                            || isHitPossible(col2, row1, col1, row2, figure, moveFigure, WHITE, col2 - 1, row2 + 1)
-                            || isHitPossible(col2, row2, col1, row1, figure, moveFigure, WHITE, col2 - 1, row2 - 1)
-                            || isHitPossible(col1, row2, col2, row1, figure, moveFigure, WHITE, col2 + 1, row2 - 1)
-                            || isHitPossible(col2, row2, col1, row1, figure, moveFigure, BLACK, col2 - 1, row2 - 1)
-                            || isHitPossible(col1, row2, col2, row1, figure, moveFigure, BLACK, col2 + 1, row2 - 1)
-                            || isHitPossible(col1, row1, col2, row2, figure, moveFigure, BLACK, col2 + 1, row2 + 1)
-                            || isHitPossible(col2, row1, col1, row2, figure, moveFigure, BLACK, col2 - 1, row2 + 1)) {
+                    isHitPossible(col1, row1, col2, row2, figure, enemyFigure, WHITE, col2 + 1, row2 + 1)
+                            || isHitPossible(col2, row1, col1, row2, figure, enemyFigure, WHITE, col2 - 1, row2 + 1)
+                            || isHitPossible(col2, row2, col1, row1, figure, enemyFigure, WHITE, col2 - 1, row2 - 1)
+                            || isHitPossible(col1, row2, col2, row1, figure, enemyFigure, WHITE, col2 + 1, row2 - 1)
+                            || isHitPossible(col2, row2, col1, row1, figure, enemyFigure, BLACK, col2 - 1, row2 - 1)
+                            || isHitPossible(col1, row2, col2, row1, figure, enemyFigure, BLACK, col2 + 1, row2 - 1)
+                            || isHitPossible(col1, row1, col2, row2, figure, enemyFigure, BLACK, col2 + 1, row2 + 1)
+                            || isHitPossible(col2, row1, col1, row2, figure, enemyFigure, BLACK, col2 - 1, row2 + 1)) {
 
                 System.out.println("Hit move is true");
                 return true;
             }
-            System.out.println("Hit move is false");
+//            System.out.println("Hit move is false");
             return false;
         }
     }
@@ -176,7 +176,7 @@ public class Board {
     }
 
     private void setOppositeColor() {
-        whoMoves = (whoMoves == BLACK) ? BLACK : WHITE;
+        whoMoves = (whoMoves == WHITE) ? BLACK : WHITE;
     }
 
     public void move(int col1, int row1, int col2, int row2) {
