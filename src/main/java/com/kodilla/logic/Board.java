@@ -11,10 +11,10 @@ import static com.kodilla.logic.FigureColor.WHITE;
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
     private FigureColor whoMoves = WHITE;
-//    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
-//    private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
-    public static Image IMAGE_WHITE = null;
-    public static Image IMAGE_BLACK = null;
+    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
+  private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
+//    public static Image IMAGE_WHITE = null;
+//    public static Image IMAGE_BLACK = null;
 
     public Board() {
         for (int n = 0; n < 10; n++) {
@@ -72,7 +72,7 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
         setFigure(7, 5, new Pawn(BLACK));
 
-        System.out.println("Color" + " " + whoMoves + " " + "starts the game");
+        System.out.println("Color" + " " + "BLACK" + " " + "starts the game");
     }
 
     private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
@@ -163,7 +163,7 @@ public class Board {
                             || isHitPossible(col1, row1, col2, row2, figure, enemyFigure, BLACK, col2 + 1, row2 + 1)
                             || isHitPossible(col2, row1, col1, row2, figure, enemyFigure, BLACK, col2 - 1, row2 + 1)) {
 
-                System.out.println("Hit move is true");
+//                System.out.println("Hit move is true");
                 return true;
             }
 //            System.out.println("Hit move is false");
@@ -172,7 +172,7 @@ public class Board {
     }
 
     private boolean isHitPossible(int col1, int row1, int col2, int row2, Figure figure, Figure enemyFigure, FigureColor white, int i, int i2) {
-        return figure.getColor() == white && col2 - col1 == 1 && row2 - row1 == 1 && enemyFigure instanceof Pawn && getFigure(i, i2) instanceof None;
+        return figure.getColor() == white && col2 - col1 == 1 && row2 - row1 == 1 && enemyFigure instanceof Pawn && enemyFigure.getColor() != figure.getColor() && getFigure(i, i2) instanceof None;
     }
 
     private void setOppositeColor() {
@@ -184,12 +184,13 @@ public class Board {
         if (getFigure(col1, row1).getColor() == whoMoves) {
             if (isSimpleMoveValid(col1, row1, col2, row2)) {
                 doSimpleMove(col1, row1, col2, row2);
+                System.out.println("done");
                 setOppositeColor();
             } else if (isHitMoveValid(col1, row1, col2, row2)) {
                 doHitMove(col1, row1, col2, row2);
 
             }
-            System.out.println("Now it's color" + " " + whoMoves + " " + "turn");
+//            System.out.println("Now it's color" + " " + whoMoves + " " + "turn");
         }
     }
 
