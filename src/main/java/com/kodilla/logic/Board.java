@@ -11,10 +11,10 @@ import static com.kodilla.logic.FigureColor.WHITE;
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
     private FigureColor whoMoves = WHITE;
-    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
-  private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
-//    public static Image IMAGE_WHITE = null;
-//    public static Image IMAGE_BLACK = null;
+//    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
+//  private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
+    public static Image IMAGE_WHITE = null;
+    public static Image IMAGE_BLACK = null;
 
     public Board() {
         for (int n = 0; n < 10; n++) {
@@ -22,6 +22,16 @@ public class Board {
         }
     }
 
+    public Board(Board board) {
+        for (int n = 0; n < 10; n++) {
+            rows.add(new BoardRow());
+        }
+        for(int col=0; col<8;col++){
+            for(int row=0;row<8;row++){
+                setFigure(col,row,board.getFigure(col,row));
+            }
+        }
+    }
 
 
     public static Image getImageWhite() {
@@ -184,7 +194,6 @@ public class Board {
         if (getFigure(col1, row1).getColor() == whoMoves) {
             if (isSimpleMoveValid(col1, row1, col2, row2)) {
                 doSimpleMove(col1, row1, col2, row2);
-                System.out.println("done");
                 setOppositeColor();
             } else if (isHitMoveValid(col1, row1, col2, row2)) {
                 doHitMove(col1, row1, col2, row2);
