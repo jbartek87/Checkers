@@ -86,55 +86,46 @@ public class Board {
     }
 
     private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
-
         Figure figure = getFigure(col1, row1);
         setFigure(col1, row1, new None());
         setFigure(col2, row2, figure);
     }
 
-    private void doHitMove(int col1, int row1, int col2, int row2) {
-
+    private void doHitMove(int col1, int row1, int col2, int row2, FigureColor whoMoves) {
         Figure figure = getFigure(col1, row1);
-        Figure moveFigure = getFigure(col2, row2);
         setFigure(col1, row1, new None());
-        if (figure.getColor() == WHITE && col2 > col1 && row2 > row1) {
-            setFigure(col2 + 1, row2 + 1, figure);
-            setFigure(col2, row2, new None());
-//            moveWithHit(col2+1, row2+1,col2,row2,figure);
-        } else if (figure.getColor() == WHITE && col1 > col2 && row2 > row1) {
-            setFigure(col2 - 1, row2 + 1, figure);
-            setFigure(col2, row2, new None());
+        if (whoMoves == WHITE && col2 > col1 && row2 > row1) {
+            moveWithHit(col2+1, row2+1,col2,row2,figure);
 
-        } else if (figure.getColor() == WHITE && col1 > col2 && row1 > row2) {
-            setFigure(col2 - 1, row2 - 1, figure);
-            setFigure(col2, row2, new None());
+        } else if (whoMoves == WHITE && col1 > col2 && row2 > row1) {
+            moveWithHit(col2 - 1, row2 + 1, col2,row2,figure);
 
-        } else if (figure.getColor() == WHITE && col2 > col1 && row1 > row2) {
-            setFigure(col2 + 1, row2 - 1, figure);
-            setFigure(col2, row2, new None());
+        } else if (whoMoves == WHITE && col1 > col2 && row1 > row2) {
+            moveWithHit(col2 - 1, row2 - 1,col2,row2, figure);
 
-        } else if (figure.getColor() == BLACK && col2 < col1 && row1 > row2) {
-            setFigure(col2 - 1, row2 - 1, figure);
-            setFigure(col2, row2, new None());
-        } else if (figure.getColor() == BLACK && col2 > col1 && row1 > row2) {
-            setFigure(col2 + 1, row2 - 1, figure);
-            setFigure(col2, row2, new None());
-        } else if (figure.getColor() == BLACK && col2 > col1 && row2 > row1) {
-            setFigure(col2 + 1, row2 + 1, figure);
-            setFigure(col2, row2, new None());
+        } else if (whoMoves == WHITE && col2 > col1 && row1 > row2) {
+            moveWithHit(col2 + 1, row2 - 1,col2,row2, figure);
 
-        } else if (figure.getColor() == BLACK && col1 > col2 && row2 > row1) {
-            setFigure(col2 - 1, row2 + 1, figure);
-            setFigure(col2, row2, new None());
+        } else if (whoMoves == BLACK && col2 < col1 && row1 > row2) {
+            moveWithHit(col2 - 1, row2 - 1,col2,row2, figure);
+
+        } else if (whoMoves == BLACK && col2 > col1 && row1 > row2) {
+            moveWithHit(col2 + 1, row2 - 1,col2,row2, figure);
+
+        } else if (whoMoves == BLACK && col2 > col1 && row2 > row1) {
+            moveWithHit(col2 + 1, row2 + 1,col2,row2, figure);
+
+        } else if (whoMoves == BLACK && col1 > col2 && row2 > row1) {
+            moveWithHit(col2 - 1, row2 + 1,col2,row2, figure);
 
         }
 
     }
 
-//    private void moveWithHit(int newCol, int newRow, int col, int row, Figure figure) {
-//        setFigure(newCol,newRow,figure);
-//        setFigure(col,row, new None());
-//    }
+    private void moveWithHit(int newCol, int newRow, int col, int row, Figure figure) {
+        setFigure(newCol,newRow,figure);
+        setFigure(col,row, new None());
+    }
 
     public boolean isSimpleMoveValid(int col1, int row1, int col2, int row2) {
         if(col2==-1||row2==-1||col2==8||row2==8){
@@ -181,8 +172,11 @@ public class Board {
         }
     }
 
-    private boolean isHitPossible(int col1, int row1, int col2, int row2, Figure figure, Figure enemyFigure, FigureColor white, int i, int i2) {
-        return figure.getColor() == white && col2 - col1 == 1 && row2 - row1 == 1 && enemyFigure instanceof Pawn && enemyFigure.getColor() != figure.getColor() && getFigure(i, i2) instanceof None;
+    private boolean isHitPossible(int col1, int row1, int col2, int row2, Figure figure, Figure enemyFigure,
+                                  FigureColor white, int i, int i2) {
+
+        return figure.getColor() == white && col2 - col1 == 1 && row2 - row1 == 1 && enemyFigure instanceof Pawn &&
+                enemyFigure.getColor() != figure.getColor() && getFigure(i, i2) instanceof None;
     }
 
     private void setOppositeColor() {
@@ -196,7 +190,7 @@ public class Board {
                 doSimpleMove(col1, row1, col2, row2);
                 setOppositeColor();
             } else if (isHitMoveValid(col1, row1, col2, row2)) {
-                doHitMove(col1, row1, col2, row2);
+                doHitMove(col1, row1, col2, row2,whoMoves);
 
             }
 //            System.out.println("Now it's color" + " " + whoMoves + " " + "turn");

@@ -11,17 +11,15 @@ import static com.kodilla.logic.FigureColor.BLACK;
 import static com.kodilla.logic.FigureColor.WHITE;
 
 public class AiLogic {
-    private List<Move> possibleMoves = new ArrayList<>();
+    public List<Move> possibleMoves = new ArrayList<>();
     private List<ScoredMove> scoredMoves = new ArrayList<>();
 
 
     public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount) {
         // 1. Zbudować listę wszystkich mozliwych ruchów
 
-
         for (int col = 0; col < 8; col++) {
             for (int row = 0; row < 8; row++) {
-
                 possibleMovesOfFigure(board, whoMoves, col, row);
             }
         }
@@ -33,7 +31,7 @@ public class AiLogic {
             boardTemp.move(move.getCol1(), move.getRow1(), move.getRow2(), move.getRow2());
             int score = calculateScore(boardTemp, whoMoves);
             scoredMoves.add(new ScoredMove(move, score));
-
+            System.out.println(score);
         }
 
 
@@ -41,8 +39,7 @@ public class AiLogic {
 
         //4. Robie kopie board(deep copy)
 
-        Board boardTemp = new Board();
-        boardTemp = board;
+
 
         //5. Wykonuje na skopiowanej planszy ruch wybrany w pkt.3
         //6. Wywołuje rekurencyjnie getBestMove przekazując jej kopie planszy z jednym ruchem zrobionym
@@ -56,11 +53,11 @@ public class AiLogic {
 
     private void possibleMovesOfFigure(Board board, FigureColor whoMoves, int col, int row) {
         if (board.getFigure(col, row).getColor() == whoMoves) {
-            int dY = (whoMoves == FigureColor.BLACK) ? 1 : -1;
-            possibleMovesToLeftOrRight(board, col, row, dY, col - 1 >= 0, col - 1);
-            possibleMovesToLeftOrRight(board, col, row, dY, col + 1 <= 7, col + 1);
-            possibleHitsToLeftOrRight(board, whoMoves, col, row, dY, col - 2 >= 0, col - 2, col - 1);
-            possibleHitsToLeftOrRight(board, whoMoves, col, row, dY, col + 2 <= 7, col + 2, col + 1);
+            int direction = (whoMoves == BLACK) ? -1 : 1;
+            possibleMovesToLeftOrRight(board, col, row, direction, col - 1 >= 0, col - 1);
+            possibleMovesToLeftOrRight(board, col, row, direction, col + 1 <= 7, col + 1);
+            possibleHitsToLeftOrRight(board, whoMoves, col, row, direction, col - 2 >= 0, col - 2, col - 1);
+            possibleHitsToLeftOrRight(board, whoMoves, col, row, direction, col + 2 <= 7, col + 2, col + 1);
         }
     }
 
@@ -95,18 +92,18 @@ public class AiLogic {
             for (int col = 0; col < 8; col++) {
                 for (int row = 0; row < 8; row++) {
                     if (board.getFigure(col, row) instanceof Pawn && board.getFigure(col, row).getColor() == FigureColor.WHITE) {
-                        score = score + row;
+                        score = score + row+1;
                     }
                 }
             }
-
 
         }
         if (whoMoves == FigureColor.BLACK) {
             for (int col = 0; col < 8; col++) {
                 for (int row = 0; row < 8; row++) {
                     if (board.getFigure(col, row) instanceof Pawn && board.getFigure(col, row).getColor() == FigureColor.BLACK) {
-                        score = score + row-7;
+                        System.out.println("FOUND A BLACK PAWN at column: " + col + " and at row " + row);
+                        score = score + row-8;
                     }
                 }
             }
@@ -114,7 +111,6 @@ public class AiLogic {
 
 
         }
-        System.out.println(whoMoves + " score = " + score);
         return score;
         // 2. jeżeli jest możliwe jakieś bicie to dodaje np. + 15 pkt
         // 3. od wyniku odejmujemy pkt przeciwnika policzone tak samo
