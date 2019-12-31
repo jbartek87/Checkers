@@ -10,7 +10,7 @@ import static com.kodilla.logic.FigureColor.WHITE;
 
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
-    private FigureColor whoMoves = WHITE;
+    private FigureColor whoMoves = BLACK;
 //    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
 //  private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
     public static Image IMAGE_WHITE = null;
@@ -82,7 +82,7 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
         setFigure(7, 5, new Pawn(BLACK));
 
-        System.out.println("Color" + " " + "BLACK" + " " + "starts the game");
+        System.out.println("Color"  + whoMoves + " " + "starts the game");
     }
 
     private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
@@ -185,9 +185,10 @@ public class Board {
 
     public void move(int col1, int row1, int col2, int row2) {
 
-        if (getFigure(col1, row1).getColor() == whoMoves) {
+        if (getFigure(col1, row1).getColor() != whoMoves) {
             if (isSimpleMoveValid(col1, row1, col2, row2)) {
                 doSimpleMove(col1, row1, col2, row2);
+                System.out.println(whoMoves + " has made a move");
                 setOppositeColor();
             } else if (isHitMoveValid(col1, row1, col2, row2)) {
                 doHitMove(col1, row1, col2, row2,whoMoves);

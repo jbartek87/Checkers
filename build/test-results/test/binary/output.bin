@@ -1,92 +1,17 @@
-Color BLACK starts the game
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
-.FOUND A BLACK PAWN at column: 0 and at row 6
-.FOUND A BLACK PAWN at column: 1 and at row 5
-.FOUND A BLACK PAWN at column: 1 and at row 7
-.FOUND A BLACK PAWN at column: 2 and at row 6
-.FOUND A BLACK PAWN at column: 3 and at row 5
-.FOUND A BLACK PAWN at column: 3 and at row 7
-.FOUND A BLACK PAWN at column: 4 and at row 6
-.FOUND A BLACK PAWN at column: 5 and at row 5
-.FOUND A BLACK PAWN at column: 5 and at row 7
-.FOUND A BLACK PAWN at column: 6 and at row 6
-.FOUND A BLACK PAWN at column: 7 and at row 5
-.FOUND A BLACK PAWN at column: 7 and at row 7
-24
+ColorBLACK starts the game
+BLACK has made a move
+35
+BLACK has made a move
+40
+BLACK has made a move
+40
+BLACK has made a move
+40
+BLACK has made a move
+40
+BLACK has made a move
+40
+BLACK has made a move
+45
+BLACK has made a move
+3Move from col: 6, and row: 2 to col: 7, and row:3
