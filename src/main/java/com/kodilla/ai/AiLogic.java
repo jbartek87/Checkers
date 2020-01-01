@@ -13,10 +13,12 @@ import static com.kodilla.logic.FigureColor.WHITE;
 public class AiLogic {
     public List<Move> possibleMoves = new ArrayList<>();
     public List<ScoredMove> scoredMoves = new ArrayList<>();
-    Move makeMove;
+
 
 
     public Move getBestMove(Board board, FigureColor whoMoves, int stepsCount) {
+
+        Move makeMove = new Move(0,0,0,0);
         // 1. Zbudować listę wszystkich mozliwych ruchów
 
         for (int col = 0; col < 8; col++) {
@@ -32,6 +34,7 @@ public class AiLogic {
             if (boardTemp.isHitMoveValid(move.getCol1(), move.getRow1(), move.getCol2(), move.getRow2())) {
                 score = score + 15;
             }
+            setWhoMoves(boardTemp, whoMoves);
             boardTemp.move(move.getCol1(), move.getRow1(), move.getCol2(), move.getRow2());
 
             score = score + calculateScore(boardTemp, whoMoves);
@@ -53,12 +56,16 @@ public class AiLogic {
 
 
         //5. Wykonuje na skopiowanej planszy ruch wybrany w pkt.3
-
-        board.move(makeMove.getCol1(), makeMove.getRow1(), makeMove.getCol2(), makeMove.getRow2());
         System.out.println("Move from col: " + makeMove.getCol1()+ ", and row: " + makeMove.getRow1() + " to col: "
-        + makeMove.getCol2() + ", and row:" + makeMove.getRow2());
-
+                + makeMove.getCol2() + ", and row:" + makeMove.getRow2());
+        board.move(makeMove.getCol1(),makeMove.getRow1(),makeMove.getCol2(),makeMove.getRow2());
         possibleMoves.clear();
+        return makeMove;
+
+
+
+
+
 
         //6. Wywołuje rekurencyjnie getBestMove przekazując jej kopie planszy z jednym ruchem zrobionym
         //   oraz zmienionym whoMoves oraz stepsCount zmniejszonym o 1
@@ -66,7 +73,7 @@ public class AiLogic {
         //8. Wygrywa ten ruch z pierwszego wykonania algorytmu , który w ostatnim wykonaniu algorytmu
         // dał najwyższą punktację sytuacji na planszy
         // Założenie: człowiek wybierze ścieżke dającą mu najwięcej pkt w jednym ruchu
-        return null;
+
     }
 
     private void possibleMovesOfFigure(Board board, FigureColor whoMoves, int col, int row) {
@@ -105,10 +112,16 @@ public class AiLogic {
         }
     }
 
+    private void setWhoMoves(Board board, FigureColor whoMoves){
+        if(whoMoves==WHITE){
+            board.whoMoves=WHITE;
+        }else if(whoMoves==BLACK)
+            board.whoMoves=BLACK;
+    }
+
     // 1. sumuje dla każdej figury koloru whoMoves na planszy jej odległość od krawędzi bazowej
     public int calculateScore(Board board, FigureColor whoMoves) {
         int score = 0;
-        int direction = (whoMoves == BLACK) ? -1 : 1;
         if (whoMoves == WHITE) {
             for (int col = 0; col < 8; col++) {
                 for (int row = 0; row < 8; row++) {
@@ -135,7 +148,7 @@ public class AiLogic {
             score = Math.abs(score);
 
         }
-        System.out.println(score);
+//        System.out.println(score);
         return score;
         // 2. jeżeli jest możliwe jakieś bicie to dodaje np. + 15 pkt
         // 3. od wyniku odejmujemy pkt przeciwnika policzone tak samo

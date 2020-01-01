@@ -24,7 +24,16 @@ public class BoardTestSuite {
         Board board = new Board();
         AiLogic logic = new AiLogic();
         board.initBoard();
+        logic.getBestMove(board,FigureColor.BLACK,3);
         logic.getBestMove(board,FigureColor.WHITE,3);
+        logic.getBestMove(board,FigureColor.BLACK,3);
+        logic.getBestMove(board,FigureColor.WHITE,3);
+        logic.getBestMove(board,FigureColor.BLACK,3);
+        logic.getBestMove(board,FigureColor.WHITE,3);
+        logic.getBestMove(board,FigureColor.BLACK,3);
+        logic.getBestMove(board,FigureColor.WHITE,3);
+        logic.getBestMove(board,FigureColor.BLACK,3);
+
 
 
 
