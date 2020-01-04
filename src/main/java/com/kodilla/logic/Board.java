@@ -1,5 +1,7 @@
 package com.kodilla.logic;
 
+import com.kodilla.ai.AiLogic;
+import com.kodilla.gui.AlertBox;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -11,10 +13,10 @@ import static com.kodilla.logic.FigureColor.WHITE;
 public class Board {
     private List<BoardRow> rows = new ArrayList<>();
     public FigureColor whoMoves = BLACK;
-//    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
-//  private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
-    public static Image IMAGE_WHITE = null;
-    public static Image IMAGE_BLACK = null;
+    private static Image IMAGE_WHITE = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
+    private static Image IMAGE_BLACK = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
+//    public static Image IMAGE_WHITE = null;
+//    public static Image IMAGE_BLACK = null;
 
     public Board() {
         for (int n = 0; n < 10; n++) {
@@ -82,7 +84,7 @@ public class Board {
         setFigure(7, 7, new Pawn(BLACK));
         setFigure(7, 5, new Pawn(BLACK));
 
-        System.out.println("Color"  + whoMoves + " " + "starts the game");
+        System.out.println("Color " + whoMoves + " " + " starts the game");
     }
 
     private void doSimpleMove(int col1, int row1, int col2, int row2)throws IndexOutOfBoundsException {
@@ -152,7 +154,6 @@ public class Board {
             Figure figure = getFigure(col1, row1);
             Figure enemyFigure = getFigure(col2, row2);
             if (col2 + 1 == 8 || row2 + 1 == 8 || col2 - 1 == -1 || row2 - 1 == -1) {
-//                System.out.println("Hit move is false");
                 return false;
             } else if (
                     isHitPossible(col1, row1, col2, row2, figure, enemyFigure, WHITE, col2 + 1, row2 + 1)
@@ -166,7 +167,6 @@ public class Board {
 
                 return true;
             }
-//            System.out.println("Hit move is false");
             return false;
         }
     }
@@ -179,22 +179,34 @@ public class Board {
     }
 
     public void setOppositeColor() {
-        whoMoves = (whoMoves == WHITE) ? BLACK : WHITE;
+        whoMoves = getOpposite(whoMoves);
+    }
+
+    private FigureColor getOpposite(FigureColor whoMoves) {
+        return (whoMoves == WHITE) ? BLACK : WHITE;
     }
 
     public void move(int col1, int row1, int col2, int row2) {
-
-        if (getFigure(col1, row1).getColor() == whoMoves) {
+        if (getFigure(col1, row1).getColor() != whoMoves) {
             if (isSimpleMoveValid(col1, row1, col2, row2)) {
                 doSimpleMove(col1, row1, col2, row2);
                 setOppositeColor();
             } else if (isHitMoveValid(col1, row1, col2, row2)) {
                 doHitMove(col1, row1, col2, row2,whoMoves);
-                System.out.println("Hit move");
+                int score1 = AiLogic.calculateScore(this, whoMoves);
+                int score2 = AiLogic.calculateScore(this, getOpposite(whoMoves));
+                if (score1 == 0 || score2 == 0)
+                    displayWinner((score1 == 0) ? whoMoves : getOpposite(whoMoves));
 
             }
-//            System.out.println("Now it's color" + " " + whoMoves + " " + "turn");
+//
         }
+
+    }
+
+    private void displayWinner(FigureColor figureColor) {
+        System.out.println("Winner");
+        AlertBox.display("End of game", whoMoves + " wins");
     }
 
 

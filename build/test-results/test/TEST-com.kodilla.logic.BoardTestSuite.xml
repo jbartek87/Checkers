@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-01T19:06:06" hostname="DESKTOP-0LFKVD0" time="0.02">
+<testsuite name="com.kodilla.logic.BoardTestSuite" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-01T19:39:08" hostname="DESKTOP-0LFKVD0" time="0.025">
   <properties/>
-  <testcase name="logicTest" classname="com.kodilla.logic.BoardTestSuite" time="0.02"/>
+  <testcase name="logicTest" classname="com.kodilla.logic.BoardTestSuite" time="0.025"/>
   <system-out><![CDATA[ColorBLACK starts the game
 Move from col: 7, and row: 5 to col: 6, and row:4
 Move from col: 6, and row: 2 to col: 7, and row:3
@@ -10,8 +10,8 @@ Move from col: 7, and row: 1 to col: 6, and row:2
 Move from col: 7, and row: 7 to col: 6, and row:6
 Move from col: 6, and row: 2 to col: 5, and row:3
 Move from col: 5, and row: 5 to col: 4, and row:4
-Move from col: 7, and row: 3 to col: 8, and row:4
-Move from col: 6, and row: 6 to col: 5, and row:5
+Move from col: 7, and row: 3 to col: 6, and row:4
+Move from col: 7, and row: 5 to col: 6, and row:4
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

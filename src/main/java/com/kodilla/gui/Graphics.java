@@ -14,12 +14,12 @@ import javafx.stage.Stage;
 
 public class Graphics extends Application {
     private Image imageback = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\board2.jpg");
-    Image imageWhite = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnWhite.png");
-    Image imageBlack = new Image("file:C:\\Users\\cp24\\Desktop\\JavaSptember\\Kodilla\\checkersV3\\src\\main\\resources\\pawnBlack.png");
 
     public static void main(String[] args) {
         launch(args);
     }
+
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
